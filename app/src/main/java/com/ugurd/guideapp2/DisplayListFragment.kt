@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 
 class DisplayListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val bundle: DisplayListFragmentArgs by navArgs()
+        val getTopicName = bundle.topicname
+        println(getTopicName)
+
 
     }
 
@@ -18,6 +24,8 @@ class DisplayListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_display_list, container, false)
+
+
         return view
     }
 

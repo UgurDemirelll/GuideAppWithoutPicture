@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_displayListFragment_to_displayFragment"
             app:destination="@id/displayFragment" />
+        <argument
+            android:name="topicname"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/displayFragment"

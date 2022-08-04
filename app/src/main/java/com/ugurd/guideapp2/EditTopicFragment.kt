@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_display_select.view.*
+import kotlinx.android.synthetic.main.fragment_edit_topic.*
 import kotlinx.android.synthetic.main.fragment_edit_topic.view.*
 
 class EditTopicFragment : Fragment() {
@@ -28,37 +29,35 @@ class EditTopicFragment : Fragment() {
         topics.add("Konu Seç")
         topics.add("başka konu")
         issues.add("ayraçlar listelenecek")
-        
 
 try {
     activity?.let {
 
         dataAdapter = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,topics)
         dataAdapter2 = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,issues)
-        view.spinnerEditTopic.adapter = dataAdapter
-        println("try çalışıyor")
-        view.spinnerEditIssue.adapter = dataAdapter2
+        val vt = DatabaseHelper(it)
+        val topiclist = Topicsdao().allTopics(vt)
+        for ( k in topiclist){
+            topics.add(k.topic_name)
+        }
     }
     }catch (e : Exception){
-        println("catch çalışıyor")
         e.printStackTrace()
     }
 
-
-
-        // veri çekeceğiz
-
-
-
-
+        view.spinnerEditTopic.adapter = dataAdapter
+        view.spinnerEditIssue.adapter = dataAdapter2
 
         view.buttonEditTopic.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_editTopicFragment_to_editSaveListFragment)
+
+            val putTopicName = topics[spinnerEditTopic.selectedItemPosition]
+            val putTopicIssue = issues[spinnerEditIssue.selectedItemPosition]
+            val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveListFragment(putTopicName,putTopicIssue)
+
+            Navigation.findNavController(it).navigate(data)
         }
 
         return view
     }
-
-
 
 }

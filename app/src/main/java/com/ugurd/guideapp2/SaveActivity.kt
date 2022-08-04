@@ -21,11 +21,17 @@ import kotlinx.android.synthetic.main.activity_save.*
         val topicIssue = textSavedIssue.text.toString()
         val topicExplanation = textSavedTopic.text.toString()
 
-        val vt = databaseHelper(this)
+
+
+
 
 
         buttonSaved.setOnClickListener {
-            topicsdao().topicAdd(vt,topicName,topicIssue,topicExplanation)
+            val vt = DatabaseHelper(this)
+            Topicsdao().topicAdd(vt,topicName,topicIssue,topicExplanation)
+
+
+
         }
     }
 

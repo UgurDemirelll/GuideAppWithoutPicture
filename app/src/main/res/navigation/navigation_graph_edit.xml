@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_editSaveListFragment_to_editSaveFragment"
             app:destination="@id/editSaveFragment" />
+        <argument
+            android:name="topicname"
+            app:argType="string" />
+        <argument
+            android:name="topicissue"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editSaveFragment"
