@@ -29,6 +29,9 @@ import kotlinx.android.synthetic.main.activity_save.*
         buttonSaved.setOnClickListener {
             val vt = DatabaseHelper(this)
             Topicsdao().topicAdd(vt,topicName,topicIssue,topicExplanation)
+            val intent = Intent(applicationContext,SaveTopicActivity::class.java)
+            startActivity(intent)
+            finish()
 
 
 

@@ -1,10 +1,12 @@
 package com.ugurd.guideapp2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.navigation.Navigation
@@ -14,10 +16,10 @@ import kotlinx.android.synthetic.main.fragment_edit_topic.view.*
 
 class EditTopicFragment : Fragment() {
 
-    private  var topics = ArrayList<String>()
+    private var topics = ArrayList<String>()
     private var issues = ArrayList<String>()
-    private lateinit var dataAdapter : ArrayAdapter<String>
-    private lateinit var dataAdapter2 : ArrayAdapter<String>
+    private lateinit var dataAdapter: ArrayAdapter<String>
+    private lateinit var dataAdapter2: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,30 +31,45 @@ class EditTopicFragment : Fragment() {
         topics.add("Konu Seç")
         topics.add("başka konu")
         issues.add("ayraçlar listelenecek")
-
-try {
-    activity?.let {
-
-        dataAdapter = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,topics)
-        dataAdapter2 = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,issues)
-        val vt = DatabaseHelper(it)
-        val topiclist = Topicsdao().allTopics(vt)
-        for ( k in topiclist){
-            topics.add(k.topic_name)
+        context?.let {
+            topics.clear()
+            val vt = DatabaseHelper(it)
+            val topiclist = Topicsdao().allTopics(vt)
+            for (k in topiclist) {
+                topics.add(k.topic_name)
+            }
+            dataAdapter = ArrayAdapter(it, android.R.layout.simple_list_item_activated_1, android.R.id.text1, topics)
+            view.spinnerEditTopic.adapter = dataAdapter
         }
-    }
-    }catch (e : Exception){
-        e.printStackTrace()
-    }
 
-        view.spinnerEditTopic.adapter = dataAdapter
+        view.spinnerEditTopic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        context?.let {
+            issues.clear()
+        val vtg = DatabaseHelper(it)
+        val topic = topics[spinnerEditTopic.selectedItemPosition]
+        val issueList = Topicsdao().getIssueList(vtg, "$topic")
+        for (k in issueList) {
+            issues.add(k.topic_issue)
+        }
+
+        dataAdapter2 = ArrayAdapter(it, android.R.layout.simple_list_item_activated_1, android.R.id.text1, issues)
         view.spinnerEditIssue.adapter = dataAdapter2
+}
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
 
         view.buttonEditTopic.setOnClickListener {
 
             val putTopicName = topics[spinnerEditTopic.selectedItemPosition]
             val putTopicIssue = issues[spinnerEditIssue.selectedItemPosition]
-            val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveListFragment(putTopicName,putTopicIssue)
+            val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveListFragment(
+                putTopicName,
+                putTopicIssue
+            )
 
             Navigation.findNavController(it).navigate(data)
         }
@@ -60,4 +77,11 @@ try {
         return view
     }
 
+
+
 }
+
+
+
+
+

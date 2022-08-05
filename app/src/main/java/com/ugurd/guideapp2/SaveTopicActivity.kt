@@ -27,6 +27,11 @@ class SaveTopicActivity : AppCompatActivity() {
         topics.add("ekleme")
 
         //veri çekeceğiz
+        val vt = DatabaseHelper(this)
+        val topicList = Topicsdao().allTopics(vt)
+        for(k in topicList){
+            topics.add((k.topic_name))
+        }
 
         spinnerSave.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

@@ -31,13 +31,17 @@ class DisplaySelectFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_display_select, container, false)
 
         //topics.add("Konu Seç")
+        topics.clear()
+
         context?.let {
             dataAdapter = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,topics)
             val vt = DatabaseHelper(it)
             val topicList = Topicsdao().allTopics(vt)
             for (k in topicList){
                 topics.add(k.topic_name)
+
             }
+
         }
 
 
