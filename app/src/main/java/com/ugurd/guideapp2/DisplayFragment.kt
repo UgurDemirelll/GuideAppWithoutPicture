@@ -31,6 +31,7 @@ class DisplayFragment : Fragment() {
             println("selectid : $selectId")
             context?.let {
                 try {
+
                     val vt = DatabaseHelper(it)
                     val topicList = Topicsdao().getIdList(vt,selectId)
                     for(k in topicList){
