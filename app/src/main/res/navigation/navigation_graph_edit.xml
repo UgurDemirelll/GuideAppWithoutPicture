@@ -11,27 +11,24 @@
         android:label="fragment_edit_topic"
         tools:layout="@layout/fragment_edit_topic" >
         <action
-            android:id="@+id/action_editTopicFragment_to_editSaveListFragment"
-            app:destination="@id/editSaveListFragment" />
+            android:id="@+id/action_editTopicFragment_to_editSaveFragment"
+            app:destination="@id/editSaveFragment" />
     </fragment>
     <fragment
-        android:id="@+id/editSaveListFragment"
-        android:name="com.ugurd.guideapp2.EditSaveListFragment"
-        android:label="fragment_edit_save_list"
-        tools:layout="@layout/fragment_edit_save_list" >
-        <action
-            android:id="@+id/action_editSaveListFragment_to_editSaveFragment"
-            app:destination="@id/editSaveFragment" />
+        android:id="@+id/editSaveFragment"
+        android:name="com.ugurd.guideapp2.EditSaveFragment"
+        android:label="fragment_edit_save"
+        tools:layout="@layout/fragment_edit_save" >
         <argument
             android:name="topicname"
             app:argType="string" />
         <argument
             android:name="topicissue"
             app:argType="string" />
+        <action
+            android:id="@+id/action_editSaveFragment_to_editTopicFragment"
+            app:destination="@id/editTopicFragment"
+            app:popUpTo="@id/editSaveFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/editSaveFragment"
-        android:name="com.ugurd.guideapp2.EditSaveFragment"
-        android:label="fragment_edit_save"
-        tools:layout="@layout/fragment_edit_save" />
 </navigation>

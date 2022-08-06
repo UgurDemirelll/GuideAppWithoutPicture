@@ -3,6 +3,7 @@ package com.ugurd.guideapp2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_row_display.view.*
 
@@ -20,6 +21,10 @@ class DisplayRecyclerAdapter(val issueDisplayList : ArrayList<String>, val idLis
 
     override fun onBindViewHolder(holder: TopicHolder, position: Int) {
         holder.itemView.text_recycler_display.text = issueDisplayList[position]
+        holder.itemView.setOnClickListener {
+            val action = DisplayListFragmentDirections.actionDisplayListFragmentToDisplayFragment(idList[position])
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

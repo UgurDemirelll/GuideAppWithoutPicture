@@ -35,13 +35,8 @@ try {
             issues.add(k.topic_issue)
             idLlist.add(k.id)
         }
-        for (i in issues){
-            println(i)
-        }
-
     }
 }catch (e:Exception){
-    println("ayraçlar listelenemedi")
     e.printStackTrace()
 }
        // listAdapter.notifyDataSetChanged()

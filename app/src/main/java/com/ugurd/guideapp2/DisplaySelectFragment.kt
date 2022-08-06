@@ -15,13 +15,8 @@ class DisplaySelectFragment : Fragment() {
     private  val topics = ArrayList<String>()
     private lateinit var dataAdapter : ArrayAdapter<String>
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
     }
 
     override fun onCreateView(
@@ -39,27 +34,23 @@ class DisplaySelectFragment : Fragment() {
             val topicList = Topicsdao().allTopics(vt)
             for (k in topicList){
                 topics.add(k.topic_name)
-
             }
 
         }
-
-
         view.spinnerDisplay.adapter = dataAdapter
-
-
-
-
-
         view.buttonDisplayTopic.setOnClickListener {
             val putTopicName = topics[spinnerDisplay.selectedItemPosition].toString()
-
             val data = DisplaySelectFragmentDirections.actionDisplaySelectFragmentToDisplayListFragment(putTopicName)
-
             Navigation.findNavController(it).navigate(data)
         }
 
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+    }
 }
