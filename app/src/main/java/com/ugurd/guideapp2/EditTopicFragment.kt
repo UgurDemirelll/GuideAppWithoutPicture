@@ -66,11 +66,8 @@ class EditTopicFragment : Fragment() {
 
             val putTopicName = topics[spinnerEditTopic.selectedItemPosition]
             val putTopicIssue = issues[spinnerEditIssue.selectedItemPosition]
-            val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveListFragment(
-                putTopicName,
-                putTopicIssue
-            )
-
+            //val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveListFragment(putTopicName, putTopicIssue)
+            val data = EditTopicFragmentDirections.actionEditTopicFragmentToEditSaveFragment(putTopicName,putTopicIssue)
             Navigation.findNavController(it).navigate(data)
         }
 

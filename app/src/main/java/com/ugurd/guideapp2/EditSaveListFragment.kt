@@ -13,10 +13,7 @@ class EditSaveListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val bundle: EditSaveListFragmentArgs by navArgs()
-        val getTopicName = bundle.topicname
-        val getTopicIssue = bundle.topicissue
-        println(getTopicName +" " + getTopicIssue)
+
 
     }
 
