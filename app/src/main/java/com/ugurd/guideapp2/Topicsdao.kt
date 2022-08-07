@@ -47,9 +47,9 @@ class Topicsdao {
         val db = vt.writableDatabase
         val values = ContentValues()
 
-        values.put(topic_name,"topic_name")
-        values.put(topic_issue,"topic_issue")
-        values.put(topic_explanation,"topic_explanation")
+        values.put("topic_name",topic_name)
+        values.put("topic_issue",topic_issue)
+        values.put("topic_explanation",topic_explanation)
 
         db.update("topics",values,"id=?", arrayOf(id.toString()))
         //db.update("topics",values,"topic_name=? and topic_issue=?", arrayOf(topic_name,topic_issue))
