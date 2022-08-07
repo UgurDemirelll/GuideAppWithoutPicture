@@ -19,14 +19,14 @@ import kotlinx.android.synthetic.main.activity_save.*
 
         val topicName = textSavedTopic.text.toString()
         val topicIssue = textSavedIssue.text.toString()
-        val topicExplanation = textSavedTopic.text.toString()
-
 
 
 
 
 
         buttonSaved.setOnClickListener {
+            val topicExplanation = textSavedExplanation.text.toString()
+            println("kaydedilmesi gereken açıklama : $topicExplanation")
             val vt = DatabaseHelper(this)
             Topicsdao().topicAdd(vt,topicName,topicIssue,topicExplanation)
             val intent = Intent(applicationContext,SaveTopicActivity::class.java)

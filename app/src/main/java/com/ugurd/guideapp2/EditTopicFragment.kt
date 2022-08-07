@@ -35,8 +35,12 @@ class EditTopicFragment : Fragment() {
             topics.clear()
             val vt = DatabaseHelper(it)
             val topiclist = Topicsdao().allTopics(vt)
+            val topicset = mutableSetOf<String>()
             for (k in topiclist) {
-                topics.add(k.topic_name)
+                topicset.add(k.topic_name)
+            }
+            for (t in topicset){
+                topics.add(t)
             }
             dataAdapter = ArrayAdapter(it, android.R.layout.simple_list_item_activated_1, android.R.id.text1, topics)
             view.spinnerEditTopic.adapter = dataAdapter

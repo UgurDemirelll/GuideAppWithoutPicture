@@ -29,12 +29,23 @@ class DisplaySelectFragment : Fragment() {
         topics.clear()
 
         context?.let {
-            dataAdapter = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,topics)
+
             val vt = DatabaseHelper(it)
             val topicList = Topicsdao().allTopics(vt)
             for (k in topicList){
                 topics.add(k.topic_name)
+                val topicset = mutableSetOf<String>()
+                for (t in topics){
+                    topicset.add(t)
+                }
+                topics.clear()
+                for(z in topicset){
+                    topics.add(z)
+                }
+
+
             }
+            dataAdapter = ArrayAdapter(it,android.R.layout.simple_list_item_activated_1,android.R.id.text1,topics)
 
         }
         view.spinnerDisplay.adapter = dataAdapter

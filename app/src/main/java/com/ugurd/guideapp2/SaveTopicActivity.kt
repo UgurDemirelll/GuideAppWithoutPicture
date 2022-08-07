@@ -24,7 +24,7 @@ class SaveTopicActivity : AppCompatActivity() {
             startActivity(intent)
         }
         topics.add("Yeni Konu Ekle")
-        topics.add("ekleme")
+
 
         //veri çekeceğiz
         val vt = DatabaseHelper(this)
@@ -52,7 +52,14 @@ class SaveTopicActivity : AppCompatActivity() {
 
         }
 
-
+        val topicset = mutableSetOf<String>()
+        for(t in topics){
+            topicset.add(t)
+        }
+        topics.clear()
+        for(z in topicset){
+            topics.add(z)
+        }
 
 
 
