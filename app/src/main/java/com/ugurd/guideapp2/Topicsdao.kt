@@ -42,7 +42,7 @@ class Topicsdao {
 
     }
 
-    fun topicUpdate(vt : DatabaseHelper,id : Int, topic_name: String,topic_issue: String,topic_explanation: String){
+    fun update(vt: DatabaseHelper, id : Int, topic_name : String, topic_issue : String, topic_explanation : String){
 
         val db = vt.writableDatabase
         val values = ContentValues()
@@ -76,7 +76,26 @@ class Topicsdao {
         return topicsArrayList
     }
 
+    @SuppressLint("Range")
+    fun getIdList (vt : DatabaseHelper,id : Int) : ArrayList<Topics> {
 
+        val topicsArrayList = ArrayList<Topics>()
+        val db = vt.writableDatabase
+        val cursor = db.rawQuery("SELECT * FROM topics WHERE id = ? ", arrayOf(id.toString()), null)
+
+        while (cursor.moveToNext()) {
+
+            val topic = Topics(
+                cursor.getInt(cursor.getColumnIndex("id")),
+                cursor.getString(cursor.getColumnIndex("topic_name")),
+                cursor.getString(cursor.getColumnIndex("topic_issue")),
+                cursor.getString(cursor.getColumnIndex("topic_explanation"))
+            )
+            topicsArrayList.add(topic)
+            db.close()
+        }
+        return topicsArrayList
+    }
 
 }
 
