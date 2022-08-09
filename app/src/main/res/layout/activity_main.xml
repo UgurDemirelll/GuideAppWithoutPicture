@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#794C3A03"
+    android:background="@color/primaryLightColor"
     tools:context=".MainActivity">
 
     <Button
@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="177dp"
-        android:capitalize="none"
         android:text="Görüntüle"
         android:textSize="20sp"
         app:cornerRadius="15dp"

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_display.*
+import kotlinx.android.synthetic.main.fragment_display.view.*
 
 class DisplayFragment : Fragment() {
 

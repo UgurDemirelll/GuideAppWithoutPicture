@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
         android:text="test"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryTextColor"
         android:textSize="34sp">
 
     </TextView>
