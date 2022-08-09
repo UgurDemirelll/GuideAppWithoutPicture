@@ -8,11 +8,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_save.*
 import kotlinx.android.synthetic.main.activity_save_topic.*
 
 class SaveTopicActivity : AppCompatActivity() {
 
     private  val topics = ArrayList<String>()
+    private val issues = ArrayList<String>()
     private lateinit var dataAdapter : ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class SaveTopicActivity : AppCompatActivity() {
         val topicList = Topicsdao().allTopics(vt)
         for(k in topicList){
             topics.add((k.topic_name))
+            issues.add((k.topic_issue))
         }
 
         spinnerSave.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
@@ -68,10 +71,23 @@ class SaveTopicActivity : AppCompatActivity() {
 
 
         buttonSaveNext.setOnClickListener {
-            val intent = Intent(applicationContext,SaveActivity::class.java)
-            intent.putExtra("topicname",textSaveTopic.text.toString())
-            intent.putExtra("topicissue",textSaveIssue.text.toString())
-            startActivity(intent)
-        }
-    }
+            if(textSaveTopic.text.toString() == "" && textSaveIssue.text.toString() == "") {
+                textSaveTopic.setError("konu boş olamaz")
+                textSaveIssue.setError("ayraç ismi boş olamaz")
+            }else if (textSaveTopic.text.toString() == "") {
+                textSaveTopic.setError("konu boş olamaz")
+            }else if(textSaveIssue.text.toString() == ""){
+                textSaveIssue.setError("ayraç ismi boş olamaz")
+            }else if ( issues.contains("${textSaveIssue.text.toString()}")){
+                textSaveIssue.setError("Bu Ayraç Zaten Kullanılıyor")
+            }else{
+                val intent = Intent(applicationContext,SaveActivity::class.java)
+                intent.putExtra("topicname",textSaveTopic.text.toString())
+                intent.putExtra("topicissue",textSaveIssue.text.toString())
+                startActivity(intent)
+
+                            }
+
+                        }
+                    }
 }

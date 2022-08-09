@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_editTopicFragment_to_editSaveFragment"
             app:destination="@id/editSaveFragment" />
+        <action
+            android:id="@+id/action_editTopicFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
         android:id="@+id/editSaveFragment"
@@ -31,4 +34,9 @@
             app:popUpTo="@id/editSaveFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.ugurd.guideapp2.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

@@ -1,6 +1,7 @@
 package com.ugurd.guideapp2
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -65,6 +66,36 @@ class EditTopicFragment : Fragment() {
 
             }
         }
+        view.spinnerEditIssue.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val topicForDelete = topics[spinnerEditTopic.selectedItemPosition]
+                println("silinecek konu ${topicForDelete}")
+                val issueForDelete = issues[spinnerEditIssue.selectedItemPosition]
+                println("silinecek ayraç ${issueForDelete}")
+                context?.let {
+                    val vt = DatabaseHelper(it)
+                    val topicList = Topicsdao().getIssueList(vt,"$topicForDelete")
+                    for(k in topicList){
+                        if(k.topic_issue == issueForDelete){
+                            println("silinmesi kesinleşen konu id : ${k.id} name : ${k.topic_name},ayraç : ${k.topic_issue}")
+                            view.buttonDelete.setOnClickListener {
+                                Topicsdao().delete(vt,k.id)
+                                Navigation.findNavController(it).navigate(EditTopicFragmentDirections.actionEditTopicFragmentToMainActivity())
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
 
         view.buttonEditTopic.setOnClickListener {
 
@@ -75,9 +106,9 @@ class EditTopicFragment : Fragment() {
             Navigation.findNavController(it).navigate(data)
         }
 
+
         return view
     }
-
 
 
 }

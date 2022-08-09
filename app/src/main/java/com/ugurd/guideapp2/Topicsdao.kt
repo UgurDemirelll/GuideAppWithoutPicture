@@ -96,6 +96,11 @@ class Topicsdao {
         }
         return topicsArrayList
     }
+    fun delete (vt : DatabaseHelper, id : Int){
+        val db = vt.writableDatabase
+        db.delete("topics","id = ?", arrayOf(id.toString()))
+        db.close()
+    }
 
 }
 

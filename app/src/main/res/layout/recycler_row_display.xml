@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    >
 
-    <TextView
-        android:id="@+id/text_recycler_display"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:text="test"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="34sp">
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#3F51B5"
+        app:cardCornerRadius="17dp">
 
-    </TextView>
+        <TextView
+            android:id="@+id/text_recycler_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/primaryColor"
+            android:padding="5dp"
+
+            android:text="test"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp">
+
+        </TextView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

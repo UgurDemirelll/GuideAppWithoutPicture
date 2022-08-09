@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryDarkColor"
+    android:hapticFeedbackEnabled="true"
     tools:context=".EditTopicFragment">
 
 
     <Spinner
         android:id="@+id/spinnerEditTopic"
-        android:layout_width="353dp"
-        android:layout_height="81dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_marginTop="73dp"
+        android:background="@color/primaryLightColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +22,10 @@
 
     <Spinner
         android:id="@+id/spinnerEditIssue"
-        android:layout_width="353dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/primaryLightColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerEditTopic" />
@@ -30,10 +34,21 @@
         android:id="@+id/buttonEditTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
+        android:layout_marginBottom="300dp"
         android:text="İlerle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerEditTopic" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonDelete" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="300dp"
+        android:text="Sil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditTopic"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

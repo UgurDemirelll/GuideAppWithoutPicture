@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
     tools:context=".SaveTopicActivity">
 
     <Spinner
@@ -49,6 +50,7 @@
         android:layout_marginTop="91dp"
         android:text="İlerle"
         android:textSize="16sp"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonBackToMain"
@@ -61,6 +63,7 @@
         android:layout_marginTop="91dp"
         android:text="Anasayfa"
         android:textSize="16sp"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toStartOf="@+id/buttonSaveNext"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
